@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+._*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+/tmp/
+
+# 临时与备份
+*.bak
+*.bak.*
+*.tmp
+
+# Playwright 本地会话缓存（不应提交）
+.playwright-cli/
+
+# 运行时状态（Agent 的 state/report 会持续写入，按需决定是否提交）
+# 默认不提交 reports 目录下的动态报告
+ai-workflows/agents/alert-analysis/state/reports/*.md
+!ai-workflows/agents/alert-analysis/state/reports/README.md
+
+# feedback 日志（含潜在业务信息）
+ai-workflows/agents/code-review/feedback/**/*.jsonl
+
+# 环境相关
+.env
+.env.local

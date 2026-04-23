@@ -1,0 +1,7 @@
+version: 1
+cursor:
+  last_processed_id: 0
+  last_run_at: null
+  total_processed: 0
+status: idle
+recent_errors: []

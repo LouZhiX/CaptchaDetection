@@ -1,0 +1,36 @@
+# code-review Agent 配置
+#
+# 该文件被 webhook-server 和 cron 任务加载
+
+agent:
+  name: code-review
+  version: 1.0.0
+
+# 通知渠道
+notify:
+  im_webhook: "${IM_REVIEW_WEBHOOK}"  # 通过环境变量注入
+
+# 过滤规则（跳过这些场景）
+filter:
+  # 跳过的文件 glob（通常不参与 Review）
+  skip_files:
+    - "**/*.sum"
+    - "vendor/**"
+    - "**/mock_*.go"
+    - "docs/**"
+  # MR 作者白名单（如机器人账号自动提交的 MR 不 Review）
+  skip_authors:
+    - "ci-bot"
+  # 最大 diff 行数，超过则降级为抽样 Review
+  max_diff_lines: 1000
+
+# 规则优先级
+rules:
+  blocker_fail_ci: true        # Blocker 级别建议阻塞 CI
+  respect_lessons: true        # 必须读取 lessons/
+  respect_exemptions: true     # 必须读取 exemptions/
+
+# 每日沉淀任务配置
+archive:
+  cron: "0 0 * * *"            # 每天 0 点
+  min_cluster_size: 3          # 同类 case 聚合 >=3 时推送建议

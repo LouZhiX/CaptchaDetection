@@ -1,0 +1,27 @@
+agent:
+  name: alert-analysis
+  version: 1.0.0
+
+# 告警路由：把不同类型告警路由到不同的分析模板
+routing:
+  - match:
+      service: "backend-service"
+    prompt: prompts/analyze.md
+    severity_overrides:
+      task_stuck: P1
+      db_connection_refused: P0
+
+# 日志源
+log_source:
+  type: log_service                       # 或 elk / loki
+  time_window_minutes: 15
+
+# 通知
+notify:
+  im_webhook: "${IM_ALERT_WEBHOOK}"
+  include_link_to_report: true    # 企业 IM里只贴报告链接，不贴完整日志
+
+# 超时
+timeout:
+  llm_seconds: 30
+  total_seconds: 60

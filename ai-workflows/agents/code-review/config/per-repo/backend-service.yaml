@@ -1,0 +1,38 @@
+agent:
+  name: code-review
+
+# 本仓库适用的 Review 规则引用
+rules:
+  file: knowledge/backend-service/guidelines/review-rules.md
+  # 全部启用，不做裁剪
+
+# 过滤
+filter:
+  skip_files:
+    - "**/*.sum"
+    - "vendor/**"
+    - "**/mock_*.go"
+    - "docs/**"
+    - "sql/**/*.sql"        # 建表 SQL 不走 Go Review
+  skip_authors:
+    - "ci-bot"
+  max_diff_lines: 1000
+
+# 反馈沉淀路径（按工程分目录）
+feedback:
+  lessons_dir: agents/code-review/lessons/backend-service/
+  exemptions_dir: agents/code-review/exemptions/backend-service/
+  feedback_dir: agents/code-review/feedback/backend-service/
+
+# 通知
+notify:
+  im_webhook: "${IM_REVIEW_WEBHOOK}"
+
+# 编译/测试验证命令
+verify:
+  build: "make wood"
+  test: "go test ./pkg/..."
+  fmt_check: "bash checkFormat.sh"
+
+# 工程语言
+language: "go"

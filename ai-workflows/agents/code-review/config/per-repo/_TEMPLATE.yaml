@@ -1,0 +1,44 @@
+agent:
+  name: code-review
+
+# 本仓库适用的 Review 规则引用（来自 knowledge/<工程>/guidelines/）
+rules:
+  file: knowledge/<工程>/guidelines/review-rules.md
+  # 仅启用这些规则 ID（可选；不填则全部启用）
+  # enabled:
+  #   - R1.*
+  #   - R2.*
+  #   - R4.*
+  # 显式禁用
+  # disabled:
+  #   - R8.*    # 文档类规则不阻塞合入
+
+# 过滤
+filter:
+  skip_files:
+    - "**/*.sum"
+    - "vendor/**"
+    - "**/mock_*.go"
+    - "docs/**"
+  skip_authors:
+    - "ci-bot"
+  max_diff_lines: 1000
+
+# 反馈沉淀路径（必须按工程分目录）
+feedback:
+  lessons_dir: agents/code-review/lessons/<工程>/
+  exemptions_dir: agents/code-review/exemptions/<工程>/
+  feedback_dir: agents/code-review/feedback/<工程>/
+
+# 通知
+notify:
+  im_webhook: "${IM_REVIEW_WEBHOOK}"
+
+# 编译/测试验证命令（Agent 可选择执行）
+verify:
+  build: ""      # 如 make wood
+  test: ""       # 如 go test ./pkg/...
+  fmt_check: ""  # 如 bash checkFormat.sh
+
+# 工程语言（Agent 据此选择 skills/<lang>/）
+language: ""

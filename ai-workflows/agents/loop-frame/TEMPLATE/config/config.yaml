@@ -1,0 +1,7 @@
+version: 1
+batch:
+  size: 50
+  max_duration_seconds: 120
+filter: {}
+notify:
+  im_webhook: "${IM_LOOP_WEBHOOK}"
