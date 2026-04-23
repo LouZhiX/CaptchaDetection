@@ -1,0 +1,31 @@
+:root{
+  --bg:#0f172a; --card:#1e293b; --fg:#f8fafc;
+  --digit:#334155; --digit-hover:#475569;
+  --op:#f97316; --op-hover:#ea580c; --fn:#64748b; --fn-hover:#94a3b8;
+  --brand:#8b5cf6;
+}
+*{box-sizing:border-box;}
+body{margin:0;min-height:100vh;display:grid;place-items:center;
+  background:radial-gradient(1200px 600px at 30% -10%, rgba(139,92,246,.25), transparent 60%),
+             radial-gradient(900px 500px at 110% 30%, rgba(249,115,22,.18), transparent 60%),
+             var(--bg);
+  color:var(--fg); font-family:-apple-system,"Helvetica Neue","PingFang SC",sans-serif;}
+.app{text-align:center;padding:24px;}
+.brand{font-size:14px;letter-spacing:.3em;opacity:.6;margin:0 0 18px;text-transform:uppercase;}
+.calculator{width:320px;background:var(--card);border-radius:24px;padding:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);}
+.display{background:#0b1220;border-radius:16px;padding:22px 18px;font-size:42px;
+  text-align:right;min-height:80px;font-variant-numeric:tabular-nums;
+  overflow-x:auto;word-break:break-all;}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+.key{height:60px;border:none;border-radius:16px;background:var(--digit);color:var(--fg);
+  font-size:22px;cursor:pointer;transition:transform .05s, background .15s;}
+.key:hover{background:var(--digit-hover);}
+.key:active{transform:scale(.95);}
+.key.op{background:var(--op);font-weight:600;}
+.key.op:hover{background:var(--op-hover);}
+.key.fn{background:var(--fn);}
+.key.fn:hover{background:var(--fn-hover);}
+.key.eq{background:var(--brand);font-weight:600;}
+.key.zero{grid-column:span 2;}
+.meta{margin-top:18px;font-size:12px;opacity:.4;}

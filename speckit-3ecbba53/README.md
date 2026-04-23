@@ -1,0 +1,30 @@
+# 需求文档：test1
+
+SpecKit 自动生成的计算器项目。
+
+## 运行
+
+直接双击 `index.html` 用浏览器打开即可。
+
+## 测试
+
+```bash
+pytest -v
+```
+
+## 文件结构
+
+```
+.
+├── index.html         # 页面结构
+├── styles.css         # 深色卡片样式
+├── calculator.js      # 交互逻辑（键盘/鼠标）
+├── calculator_core.py # 核心计算逻辑（Python 等价实现）
+└── tests/
+    └── test_calculator.py
+```
+
+## 生成信息
+
+- 需求：需求文档：test1
+- 生成工具：SpecKit Pipeline
